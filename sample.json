@@ -1,0 +1,22 @@
+// genreate a new json sample of a customer and items he purchased
+{
+    "customer": {
+        "name": "John Doe",
+        "address": "123 Main St",
+        "city": "Springfield",
+        "state": "IL",
+        "zip": "62701"
+    },
+    "items": [
+        {
+            "name": "Widget",
+            "quantity": 3,
+            "price": 10.00
+        },
+        {
+            "name": "Thing",
+            "quantity": 1,
+            "price": 5.00
+        }
+    ]
+}
