@@ -32,6 +32,6 @@ jobs:
          author_email: "github-actions"
          message: 'Commit message'
          files: |
-           output.txt
-           output_directory/file.txt
+           tsp-output/@typespec/openapi3/openapi.yaml
+           output_directory/openapi3
 
