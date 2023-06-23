@@ -18,7 +18,7 @@ jobs:
       run: dotnet tool install --global Microsoft.OpenApi.Kiota
       
     - name: Set current date as release version
-      run: echo "Release-Version=$(date +'%Y%m%d.%H%M%S')" >> $GITHUB_ENV
+      run: echo "Release-Version=$(date +'%Y.%m.%d.%H%M%S')" >> $GITHUB_ENV
       
     - name: Generate .Net API SDK
       run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "csharp" --output kiota-output/client-sdk/csharp/${{env.Release-Version}}
@@ -37,7 +37,6 @@ jobs:
          git config user.name github-actions
          git config user.email github-actions@github.com
          git add kiota-output/client-sdk
-         # git add --all
          git commit -m "generated"
          git push
         
