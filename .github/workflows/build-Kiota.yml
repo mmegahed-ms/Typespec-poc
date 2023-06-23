@@ -1,14 +1,8 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
-name: .NET
+name: Build Kiota
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+ workflow_dispatch:
 jobs:
   build:
 
@@ -22,4 +16,9 @@ jobs:
         dotnet-version: 7.0.x
     - name: Install Kiota tool
       run: dotnet tool install --global Microsoft.OpenApi.Kiota
+      
+    - name: Generate API SDK
+      run: kiota generate -openapi tsp-output\@typespec\openapi3\openapi.yaml --serializer Microsoft.Kiota.Serialization.Json.JsonSerializationWriterFactory --output kiota-output\client-sdk\.Net 
+      
+
  
