@@ -21,16 +21,16 @@ jobs:
       run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $Release-Version  
       
     - name: Generate .Net API SDK
-      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "csharp" --output "kiota-output\client-sdk\csharp\${{env.Release-Version}}"
+      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "csharp" --output kiota-output\client-sdk\csharp\$Release-Version
       
     - name: Generate java API SDK
-      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "java" --output "kiota-output\client-sdk\java\${{env.Release-Version}}"
+      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "java" --output kiota-output\client-sdk\java\$Release-Version
       
     - name: Generate typescript API SDK
-      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "typescript" --output "kiota-output\client-sdk\typescript\${{env.Release-Version}}"
+      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "typescript" --output kiota-output\client-sdk\typescript\$Release-Version
         
     - name: Generate go API SDK
-      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "go" --output "kiota-output\client-sdk\go\${{env.Release-Version}}"
+      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "go" --output kiota-output\client-sdk\go\$Release-Version
             
     - name: Commit and Push changes
       run: |
