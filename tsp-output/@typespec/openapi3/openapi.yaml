@@ -1,0 +1,635 @@
+openapi: 3.0.0
+info:
+  title: Widget Service
+  version: 1.0.0
+tags:
+  - name: Widgets
+  - name: Customers
+  - name: Gadgets
+paths:
+  /customers:
+    get:
+      tags:
+        - Customers
+      operationId: Customers_list
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+                x-typespec-name: Customer[]
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - Customers
+      operationId: Customers_create
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerCreate'
+  /customers/{id}:
+    get:
+      tags:
+        - Customers
+      operationId: Customers_read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+        - Customers
+      operationId: Customers_update
+      parameters:
+        - $ref: '#/components/parameters/Customer.id'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerUpdate'
+    delete:
+      tags:
+        - Customers
+      operationId: Customers_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: >-
+            There is no content to send for this request, but the headers may be
+            useful. 
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /customers/{id}/analyze:
+    post:
+      tags:
+        - Customers
+      operationId: Customers_analyze
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: string
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /gadgets:
+    get:
+      tags:
+        - Gadgets
+      operationId: Gadgets_list
+      description: Get a list of resources
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Gadget'
+                x-typespec-name: Gadget[]
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /gadgets/{id}:
+    get:
+      tags:
+        - Gadgets
+      operationId: Gadgets_read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gadget'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      tags:
+        - Gadgets
+      operationId: Gadgets_create
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gadget'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GadgetCreateOrUpdate'
+    patch:
+      tags:
+        - Gadgets
+      operationId: Gadgets_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gadget'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GadgetUpdate'
+    delete:
+      tags:
+        - Gadgets
+      operationId: Gadgets_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: >-
+            There is no content to send for this request, but the headers may be
+            useful. 
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /gadgets/{id}/analyze:
+    post:
+      tags:
+        - Gadgets
+      operationId: Gadgets_analyze
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: string
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /widgets:
+    get:
+      tags:
+        - Widgets
+      operationId: Widgets_list
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Widget'
+                x-typespec-name: Widget[]
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - Widgets
+      operationId: Widgets_create
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Widget'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WidgetCreate'
+  /widgets/{id}:
+    get:
+      tags:
+        - Widgets
+      operationId: Widgets_read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Widget'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+        - Widgets
+      operationId: Widgets_update
+      parameters:
+        - $ref: '#/components/parameters/Widget.id'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Widget'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WidgetUpdate'
+    delete:
+      tags:
+        - Widgets
+      operationId: Widgets_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: >-
+            There is no content to send for this request, but the headers may be
+            useful. 
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /widgets/{id}/analyze:
+    post:
+      tags:
+        - Widgets
+      operationId: Widgets_analyze
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: string
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  parameters:
+    Customer.id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    Widget.id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    Customer:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+          x-typespec-name: Item[]
+      required:
+        - id
+        - name
+        - address
+        - city
+        - state
+        - zip
+        - items
+    CustomerCreate:
+      type: object
+      properties:
+        name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+          x-typespec-name: Item[]
+      required:
+        - name
+        - address
+        - city
+        - state
+        - zip
+        - items
+    CustomerUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+          x-typespec-name: Item[]
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+      required:
+        - code
+        - message
+    Gadget:
+      type: object
+      properties:
+        id:
+          type: string
+        weight:
+          type: integer
+          format: int32
+        color:
+          type: string
+          enum:
+            - red
+            - blue
+          x-typespec-name: red | blue
+      required:
+        - id
+        - weight
+        - color
+    GadgetCreateOrUpdate:
+      type: object
+      properties:
+        weight:
+          type: integer
+          format: int32
+        color:
+          type: string
+          enum:
+            - red
+            - blue
+          x-typespec-name: red | blue
+      required:
+        - weight
+        - color
+    GadgetUpdate:
+      type: object
+      properties:
+        weight:
+          type: integer
+          format: int32
+        color:
+          type: string
+          enum:
+            - red
+            - blue
+          x-typespec-name: red | blue
+    Item:
+      type: object
+      properties:
+        name:
+          type: string
+        quantity:
+          type: integer
+          format: int32
+        price:
+          type: number
+          format: double
+      required:
+        - name
+        - quantity
+        - price
+    Widget:
+      type: object
+      properties:
+        id:
+          type: string
+        weight:
+          type: integer
+          format: int32
+        color:
+          type: string
+          enum:
+            - red
+            - blue
+          x-typespec-name: red | blue
+      required:
+        - id
+        - weight
+        - color
+    WidgetCreate:
+      type: object
+      properties:
+        weight:
+          type: integer
+          format: int32
+        color:
+          type: string
+          enum:
+            - red
+            - blue
+          x-typespec-name: red | blue
+      required:
+        - weight
+        - color
+    WidgetUpdate:
+      type: object
+      properties:
+        weight:
+          type: integer
+          format: int32
+        color:
+          type: string
+          enum:
+            - red
+            - blue
+          x-typespec-name: red | blue
