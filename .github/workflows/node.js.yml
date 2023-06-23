@@ -24,14 +24,12 @@ jobs:
 
       - name: Compile TypeScript
         run: tsp compile .
-
-      - name: Commit files
-        uses: actions/commit@v2
-        with:
-         author_name: "action@github.com"
-         author_email: "github-actions"
-         message: 'Commit message'
-         files: |
-           tsp-output/@typespec/openapi3/openapi.yaml
-           output_directory/openapi3
+        
+      - name: Commit and Push changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add tsp-output/@typespec/openapi3/openapi.yaml
+          git commit -m "generated"
+          git push
 
