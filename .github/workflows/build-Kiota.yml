@@ -18,16 +18,16 @@ jobs:
       run: dotnet tool install --global Microsoft.OpenApi.Kiota
       
     - name: Generate .Net API SDK
-      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "csharp" --output "kiota-output\client-sdk\csharp\${{ github.run_number }}"
+      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "csharp" --output "kiota-output\client-sdk\csharp\$(date +'%Y%m%d%H%M%S')"
       
     - name: Generate java API SDK
-      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "java" --output "kiota-output\client-sdk\java\${{ github.run_number }}"
+      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "java" --output "kiota-output\client-sdk\java\$(date +'%Y%m%d%H%M%S')"
       
     - name: Generate typescript API SDK
-      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "typescript" --output "kiota-output\client-sdk\typescript\${{ github.run_number }}"
+      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "typescript" --output "kiota-output\client-sdk\typescript\$(date +'%Y%m%d%H%M%S')"
         
     - name: Generate go API SDK
-      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "go" --output "kiota-output\client-sdk\go\${{ github.run_number }}"
+      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "go" --output "kiota-output\client-sdk\go\$(date +'%Y%m%d%H%M%S')"
             
     - name: Commit and Push changes
       run: |
