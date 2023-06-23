@@ -35,10 +35,11 @@ jobs:
           git config user.email github-actions@github.com
           git add tsp-output/@typespec/openapi3/openapi.yaml
           git commit -m "generated"
+          git push
         
-      - name: Push changes to client branch
-        uses: ad-m/github-push-action@master
-        with:
-           github_token: ${{ secrets.ACCESS_TOKEN }}
-           force: True
+   #   - name: Push changes to client branch
+    #    uses: ad-m/github-push-action@master
+    #    with:
+     #      github_token: ${{ secrets.ACCESS_TOKEN }}
+      #     force: True
           
