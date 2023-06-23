@@ -20,5 +20,13 @@ jobs:
     - name: Generate API SDK
       run: kiota generate -openapi tsp-output\@typespec\openapi3\openapi.yaml --language csharp --output "kiota-output\client-sdk\.Net"
       
-
+    - name: Commit and Push changes
+      run: |
+         git config user.name github-actions
+         git config user.email github-actions@github.com
+         git add kiota-output/client-sdk/.Net
+         # git add --all
+         git commit -m "generated"
+         git push
+        
  
