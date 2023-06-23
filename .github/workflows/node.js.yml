@@ -35,5 +35,5 @@ jobs:
           git config user.email github-actions@github.com
           git add tsp-output/@typespec/openapi3/openapi.yaml
           git commit -m "generated"
-          git remote set-url origin https://x-access-token:${{ env.ACCESS_TOKEN }}@github.com/${{GITHUB_REPOSITORY}}
+          git remote set-url origin https://x-access-token:${{ env.ACCESS_TOKEN }}@github.com/mmegahed-ms/Typespec-poc
           git push
