@@ -36,7 +36,7 @@ jobs:
       run: |
          git config user.name github-actions
          git config user.email github-actions@github.com
-         git add kiota-output/client-sdk
+         git add kiota-output\client-sdk
          # git add --all
          git commit -m "generated"
          git push
