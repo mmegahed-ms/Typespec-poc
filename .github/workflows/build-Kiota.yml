@@ -18,7 +18,7 @@ jobs:
       run: dotnet tool install --global Microsoft.OpenApi.Kiota
       
     - name: Generate API SDK
-      run: kiota generate -openapi tsp-output\@typespec\openapi3\openapi.yaml --serializer Microsoft.Kiota.Serialization.Json.JsonSerializationWriterFactory --output kiota-output\client-sdk\.Net 
+      run: kiota generate -openapi tsp-output\@typespec\openapi3\openapi.yaml --language csharp --output "kiota-output\client-sdk\.Net"
       
 
  
