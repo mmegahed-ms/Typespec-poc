@@ -101,7 +101,7 @@ interface Customers {
     @route("{id}/analyze") @post analyze(@path id: string): string | Error;
 }
 
-
+// add a new operation
 // add a new  route called gadgets to the service that is a copy of widgets but uses gadget model
 @route("/gadgets")
 @tag("Gadgets")
