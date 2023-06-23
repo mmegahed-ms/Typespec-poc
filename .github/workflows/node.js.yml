@@ -34,7 +34,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add tsp-output/@typespec/openapi3/openapi.yaml
-          git add --all
+          # git add --all
           git commit -m "generated"
           git push
         
