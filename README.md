@@ -1,4 +1,4 @@
-# API design with AI and mocking with Azure API Management
+# API design with Typespec use Kiota for sdk genreation and mocking with Azure API Management
 
 ## Build Status
 
@@ -23,7 +23,7 @@ Hope you find this useful!
 
 ## Architecture
 
-![ais-apim-copilot](docs/images/arch.png)
+![image](https://github.com/mmegahed-ms/azure-asev3-sql/blob/main/assets/arch.png)
 
 ## Prerequisites
 
