@@ -23,7 +23,7 @@ Hope you find this useful!
 
 ## Architecture
 
-![image](https://github.com/mmegahed-ms/azure-asev3-sql/blob/main/assets/arch.png)
+![image](https://github.com/mmegahed-ms/Typespec-poc/blob/ca7e5ace6de5bb892d7b860002bfcb0af40d2287/docs/images/Typspec-kiota-arch.png)
 
 ## Prerequisites
 
