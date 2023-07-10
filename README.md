@@ -1,25 +1,25 @@
-# API design with Typespec use Kiota for sdk genreation and mocking with Azure API Management
+# Standardize API Design and Development: Automating the End-to-End Workflow with Typespec, Kiota, Azure API Management, and GitHub Actions
 
 ## Build Status
 
 | GitHub Action | Status |
 | ----------- | ----------- |
-| Build | [![Build](https://github.com/pascalvanderheiden/ais-apim-copilot/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/pascalvanderheiden/ais-apim-copilot/actions/workflows/build.yml) |
-| Release | [![Release](https://github.com/pascalvanderheiden/ais-apim-copilot/actions/workflows/release.yml/badge.svg)](https://github.com/pascalvanderheiden/ais-apim-copilot/actions/workflows/release.yml) |
+| Build | [![Build](https://github.com/mmegahed-ms/Typespec-poc/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/mmegahed-ms/Typespec-poc/actions/workflows/build.yml) |
+| Release | [![Release](https://github.com/mmegahed-ms/Typespec-poc/actions/workflows/release.yml/badge.svg)](https://github.com/mmegahed-ms/Typespec-poc/actions/workflows/release.yml) |
 
 ## About
 
-I was wondering how current AI tools could help me with API Design. I was already using GitHub Copilot since the beta release, but used it mainly for bicep completion and markdown writing. In the process of creating this repo, my colleague Alexandre Vieira made me aware of the OpenAI project ChatGPT, which has become quite popular lately. I was curious to see how it would perform in comparison to GitHub Copilot.
+In today's fast-paced software development landscape, automating the API design and development process can greatly enhance productivity and efficiency. This article explores how to streamline the entire workflow using a comprehensive toolset that includes Typespec, Kiota, Azure API Management, and GitHub Actions.
 
-I've created this repository to show how you can use [GitHub Copilot](https://github.com/features/copilot) to create an OpenAPI specification and deploy it to [Azure API Management](https://docs.microsoft.com/en-us/azure/api-management/overview). I've also added 2 GitHub Actions to deploy it all in an automated way.
+We start by introducing Typespec,TypeSpec is a language for describing cloud service APIs and generating other API description languages, client and service code, documentation, and other assets. TypeSpec provides highly extensible core language primitives that can describe API shapes common among REST, GraphQL, gRPC, and other protocols.
 
-I've used the [Bicep](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview) language to deploy the resources. I got most of my examples from [here](https://github.com/Azure/bicep/tree/main/docs/examples).
+Next, we delve into Kiota, an SDK generation tool that takes your OpenAPI specifications and automatically generates client SDKs. This eliminates the tedious and error-prone manual effort traditionally required for implementing APIs. By leveraging Kiota, developers can quickly and consistently generate SDKs tailored to their programming language and use them to interact with the APIs effortlessly.
 
-I've added mocking policies to the API, so you can test the API without having to implement the backend. Which is ideal for testing and prototyping purposes. You could consider this an API Design First approach.
+Additionally, we explore the capabilities of Azure API Management, a comprehensive service that simplifies the management and publication of APIs. Azure API Management allows you to seamlessly import your OpenAPI specifications, set up mock services for testing, and expose your APIs to consumers securely. Furthermore, we highlight how GitHub Actions can be utilized to automate the entire process. With GitHub Actions, you can define workflows that automatically compile Typespec into OpenAPI specifications, import them into Azure API Management, and generate SDKs using Kiota.
 
-I've also added a [ChatGPT](https://openai.com/blog/chatgpt/) generated OpenAPI specification to compare it with GitHub Copilot. Thanks Alexandre Vieira for the suggestion!
+By combining Typespec, Kiota, Azure API Management, and GitHub Actions, you can achieve a fully automated end-to-end workflow for API design and development. This automation not only improves consistency and reduces development time but also enhances collaboration among teams by providing a centralized and efficient platform.
 
-Hope you find this useful!
+Whether you are a developer, architect, or product owner, this article equips you with the knowledge and insights to embark on a journey towards automating and standardizing API design and development. Discover how these powerful tools can transform your API workflow, saving you time, effort, and resources in the process.
 
 ## Architecture
 
@@ -28,7 +28,7 @@ Hope you find this useful!
 ## Prerequisites
 
 * Install [Visual Studio Code](https://code.visualstudio.com/download)
-* Install [GitHub Copilot](https://copilot.github.com/) Extension for Visual Studio Code.
+* Install [Typespec](https://microsoft.github.io/typespec/introduction/installation) Extension for Visual Studio Code.
 * Install [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) Extension for Visual Studio Code.
 * Install [OpenAPI Editor](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi) Extension for Visual Studio Code.
 * Install Chocolatey (package manager)
@@ -49,7 +49,7 @@ choco install bicep
 Install-Module -Name Az -AllowClobber -Scope CurrentUser
 ```
 
-## Create an OpenAPI Specification with GitHub Copilot and OpenAI ChatGPT
+## Create an OpenAPI Specification with Typespec
 
 ### Create an OpenAPI Specification with GitHub Copilot
 
@@ -78,23 +78,7 @@ One thing that was missing in the initial generated code were the parameters, so
 
 ![ais-apim-copilot](docs/images/extending_openapi_spec_with_copilot_2.png)
 
-### Create an OpenAPI Specification with ChatGPT
 
-As a comparison I wanted to see how other generators would perform. I've used [ChatGPT](https://openai.com/blog/chatgpt/) to compare. It's free, just register and you can start using it.
-
-* Create an OpenAPI Specification with ChatGPT
-
-![ais-apim-copilot](docs/images/chatgpt_openapi_generation.png)
-
-By default it generated a OpenAPI specification in YAML format, without examples. I've asked ChatGPT to generate the examples in my next ask.
-
-![ais-apim-copilot](docs/images/chatgpt_openapi_generation_2.png)
-
-Pretty impressive, but I think GitHub Copilot is still the winner. Because you can use it within Visual Studio Code, and it's easier to extend the OpenAPI Specification. But it's still a good alternative. I've also added the ChatGPT generated OpenAPI Specification to the repository.
-
-I've saved the output [here](deploy/release/openapi/openapi_chatgpt.yaml).
-
-Two things that I've noticed is that ChatGPT does generate the parameters in the first go, where Copilot doesn't. Second, I've noticed that when the output get very big, ChatGPT just cuts off the end. Also, the interpretation the part of "chickens and their eggs" is different, where Copilot interprets it as 2 seperate entities; chicken and egg, and ChatGPT interprets the eggs as a part of the entity chicken.
 
 ## Implement a mocking response policy
 
