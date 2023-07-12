@@ -588,6 +588,7 @@ components:
         price:
           type: number
           format: double
+      description: item object model.
       required:
         - name
         - quantity
