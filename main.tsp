@@ -28,7 +28,7 @@ model Gadget {
 
 //add a new model called customer that is a copy of widget but has differnt properties base on the below sample
 
-
+@doc("Customer object model.")
 model Customer {
     @visibility("read", "update")
     @path
