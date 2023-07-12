@@ -24,7 +24,7 @@ Whether you are a developer, architect, or product owner, this article equips yo
 
 ## Architecture
 
-![image](https://github.com/mmegahed-ms/Typespec-poc/blob/170623e5246f4b5af7d631b0070231fc0477d1b2/docs/images/Typspec-kiota-arch.png)
+![image](https://github.com/mmegahed-ms/Typespec-poc/blob/a3cf93d51a0ee5cd66088758828a13234c8ff08d/docs/images/Typspec-kiota-arch.png)
 
 ## Prerequisites
 
