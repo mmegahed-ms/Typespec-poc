@@ -41,6 +41,7 @@ model Customer {
     items: Item[];
 }
 
+@doc("item object model.")
 model Item {
     name: string;
     quantity: int32;
