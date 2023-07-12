@@ -61,6 +61,7 @@ interface Widgets {
     @route("{id}/analyze") @post analyze(@path id: string): string | Error;
 }
 // add a new  route called Customers to the service that is a copy of widgets but uses customer model
+@doc("Customer Demo Interface.")
 @route("/customers")
 @tag("Customers")
 interface Customers {
