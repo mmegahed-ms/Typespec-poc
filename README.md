@@ -24,7 +24,7 @@ Whether you are a developer, architect, or product owner, this article equips yo
 
 ## Architecture
 
-![image](https://github.com/mmegahed-ms/Typespec-poc/blob/ca7e5ace6de5bb892d7b860002bfcb0af40d2287/docs/images/Typspec-kiota-arch.png)
+![image](https://github.com/mmegahed-ms/Typespec-poc/blob/170623e5246f4b5af7d631b0070231fc0477d1b2/docs/images/Typspec-kiota-arch.png)
 
 ## Prerequisites
 
@@ -77,14 +77,14 @@ main.tsp         # TypeSpec entrypoint
 you then can define your API in the main.tsp file 
  
 I started with a sample json customer object to build an inteface for this repo 
-[Sample](https://github.com/mmegahed-ms/Typespec-poc/blob/5639d46603e780740633b7b0d47c3c9d9251f801/sample.json)
+[Sample](sample.json)
 
 I defined a demo service interface here:
-[main.tsp](https://github.com/mmegahed-ms/Typespec-poc/blob/6d0e21e01e22cd4e78c1e21cfc390559d22c4f63/main.tsp)
+[main.tsp](main.tsp)
 
 
 using Typspec help in standrizing the way you are defining your APIs in several ways on of them is creating common models interfaces as libraries and share them across team to ensure for example a common way to return an error or certain operations suported across operations. I created a library.tsp file where I defined a simple error model and base interface to be used.
-[Library](https://github.com/mmegahed-ms/Typespec-poc/blob/6d0e21e01e22cd4e78c1e21cfc390559d22c4f63/library.tsp)
+[Library](library.tsp)
 
 Then you can compile your code locally to gerneate your openapi specs using the following command you will find the result under tsp-output in the project directory
 
