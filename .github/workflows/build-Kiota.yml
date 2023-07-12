@@ -1,10 +1,10 @@
 name: Build Kiota
 
 on:
-  workflow_dispatch:
   push:
     paths:
       - 'tsp-output/**'
+  workflow_dispatch:
 
 jobs:
   build:
