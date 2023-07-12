@@ -467,6 +467,7 @@ components:
           items:
             $ref: '#/components/schemas/Item'
           x-typespec-name: Item[]
+      description: Customer object model.
       required:
         - id
         - name
@@ -493,6 +494,7 @@ components:
           items:
             $ref: '#/components/schemas/Item'
           x-typespec-name: Item[]
+      description: Customer object model.
       required:
         - name
         - address
@@ -518,6 +520,7 @@ components:
           items:
             $ref: '#/components/schemas/Item'
           x-typespec-name: Item[]
+      description: Customer object model.
     Error:
       type: object
       properties:
