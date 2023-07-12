@@ -95,7 +95,7 @@ tsp complie
 ## using Github Actions to automate the gerneation
 
 for this demo we used github actions to automate the build/compile and gernation of the openapi specs using github actions which you can find it below
-[Build Typespec](Typespec-poc/.github/workflows/Build-Typespec.yml)
+[Build Typespec](.github/workflows/Build-Typespec.yml)
 
 the output director can be found here
 [tsp-output](tsp-output/@typespec/openapi3)
@@ -106,12 +106,18 @@ you can use the Kiota visual studio code extenstion or command line tool to gern
 but here we used github action to automate the gerneation process once the new openapi specs is gerenated it will trigger the Kiota build process.
 
 you can find the workflow here
-[Build Kiota](Typespec-poc/.github/workflows/build-Kiota.yml)
+[Build Kiota](.github/workflows/build-Kiota.yml)
+
+Kiota Provides support for a wide range of languages: C#, Go, Java, PHP, Python, Ruby, Shell, Swift and Typescript for this this demo we choose to gernate a set of these languages and you can find the output [here](kiota-output/client-sdk)
+
+we published it to the repo to maek it simple but you can alos publishe it to Azure Artifactes or Github packadges etc..
+
+
 
 
 ## import the specs to Azure API managment and Implement a mocking response policy
 
-we import the specs to API managment and add the mokcking policy using this workflow [here](Typespec-poc/.github/workflows/release.yml)
+we import the specs to API managment and add the mokcking policy using this workflow [here](.github/workflows/release.yml)
 
 You can add a mocking response easily in a policy (see snippet below). I've added this policy in the automated deployment [here](deploy/release/policies/api_policy.xml), which will return a mocking response.
 
