@@ -1,46 +1,45 @@
-
 name: Build Kiota
 
 on:
- workflow_dispatch:
- push:
-   paths:
-     - 'tsp-output/@typespec/openapi3'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'tsp-output/@typespec/openapi3'
+
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 7.0.x
-    - name: Install Kiota tool
-      run: dotnet tool install --global Microsoft.OpenApi.Kiota
-      
-    - name: Set current date as release version
-      run: echo "Release-Version=$(date +'%Y.%m.%d.%H%M%S')" >> $GITHUB_ENV
-      
-    - name: Generate .Net API SDK
-      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "csharp" --output kiota-output/client-sdk/csharp/${{env.Release-Version}}
-      
-    - name: Generate java API SDK
-      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "java" --output kiota-output/client-sdk/java/${{env.Release-Version}}
-      
-    - name: Generate typescript API SDK
-      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "typescript" --output kiota-output/client-sdk/typescript/${{env.Release-Version}}
-        
-    - name: Generate go API SDK
-      run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "go" --output kiota-output/client-sdk/go/${{env.Release-Version}}
-            
-    - name: Commit and Push changes
-      run: |
-         git config user.name github-actions
-         git config user.email github-actions@github.com
-         git add kiota-output/client-sdk
-         git commit -m "generated"
-         git push
-        
- 
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+
+      - name: Install Kiota tool
+        run: dotnet tool install --global Microsoft.OpenApi.Kiota
+
+      - name: Set current date as release version
+        run: echo "Release-Version=$(date +'%Y.%m.%d.%H%M%S')" >> $GITHUB_ENV
+
+      - name: Generate .Net API SDK
+        run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "csharp" --output kiota-output/client-sdk/csharp/${{ env.Release-Version }}
+
+      - name: Generate Java API SDK
+        run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "java" --output kiota-output/client-sdk/java/${{ env.Release-Version }}
+
+      - name: Generate TypeScript API SDK
+        run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "typescript" --output kiota-output/client-sdk/typescript/${{ env.Release-Version }}
+
+      - name: Generate Go API SDK
+        run: kiota generate --openapi "tsp-output\@typespec\openapi3\openapi.yaml" --language "go" --output kiota-output/client-sdk/go/${{ env.Release-Version }}
+
+      - name: Commit and Push changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add kiota-output/client-sdk
+          git commit -m "generated"
+          git push
