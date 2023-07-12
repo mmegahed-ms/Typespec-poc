@@ -9,7 +9,7 @@
 
 ## About
 
-In today's fast-paced software development landscape, automating the API design and development process can greatly enhance productivity and efficiency. This article explores how to streamline the entire workflow using a comprehensive toolset that includes Typespec, Kiota, Azure API Management, and GitHub Actions.
+In today's fast-paced software development landscape, standarizing and automating the API design and development process can greatly enhance productivity and efficiency. This article explores how to streamline the entire workflow using a comprehensive toolset that includes Typespec, Kiota, Azure API Management, and GitHub Actions.
 
 We start by introducing Typespec,TypeSpec is a language for describing cloud service APIs and generating other API description languages, client and service code, documentation, and other assets. TypeSpec provides highly extensible core language primitives that can describe API shapes common among REST, GraphQL, gRPC, and other protocols.
 
@@ -32,6 +32,7 @@ Whether you are a developer, architect, or product owner, this article equips yo
 * Install [Typespec](https://microsoft.github.io/typespec/introduction/installation) Extension for Visual Studio Code.
 * Install [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) Extension for Visual Studio Code.
 * Install [OpenAPI Editor](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi) Extension for Visual Studio Code.
+* Install [Kiota](https://marketplace.visualstudio.com/items?itemName=ms-graph.kiota)Extension for Visual Studio Code
 * Install Chocolatey (package manager)
 
 ```ps1
@@ -65,8 +66,9 @@ Next, you can install the dependencies
 tsp install
 ```
 
-```ps1
 You should now have a basic TypeSpec project setup with a structure looking like
+
+```ps1
 
 package.json      # Package manifest defining your typespec project as a node package.
 tspconfig.yaml # TypeSpec project configuration letting you configure emitters, emitter options, compiler options, etc.
@@ -75,20 +77,41 @@ main.tsp         # TypeSpec entrypoint
 you then can define your API in the main.tsp file 
  
 I started with a sample json customer object to build an inteface for this repo 
-(https://github.com/mmegahed-ms/Typespec-poc/blob/5639d46603e780740633b7b0d47c3c9d9251f801/sample.json)
+[Sample](https://github.com/mmegahed-ms/Typespec-poc/blob/5639d46603e780740633b7b0d47c3c9d9251f801/sample.json)
+
+I defined a demo service interface here:
+[main.tsp](https://github.com/mmegahed-ms/Typespec-poc/blob/6d0e21e01e22cd4e78c1e21cfc390559d22c4f63/main.tsp)
 
 
-* Delete the backend server reference from the openapi specification (when generated)
+using Typspec help in standrizing the way you are defining your APIs in several ways on of them is creating common models interfaces as libraries and share them across team to ensure for example a common way to return an error or certain operations suported across operations. I created a library.tsp file where I defined a simple error model and base interface to be used.
+[Library](https://github.com/mmegahed-ms/Typespec-poc/blob/6d0e21e01e22cd4e78c1e21cfc390559d22c4f63/library.tsp)
 
-```json
-"servers": [
-        {
-            "url": "http://localhost:5000"
-        }
-    ],
+Then you can compile your code locally to gerneate your openapi specs using the following command you will find the result under tsp-output in the project directory
+
+```ps1
+tsp complie
 ```
 
-## Implement a mocking response policy
+## using Github Actions to automate the gerneation
+
+for this demo we used github actions to automate the build/compile and gernation of the openapi specs using github actions which you can find it below
+[Build Typespec](Typespec-poc/.github/workflows/Build-Typespec.yml)
+
+the output director can be found here
+[tsp-output](tsp-output/@typespec/openapi3)
+
+## using Kiota to gerneate SDK for your defined API 
+
+you can use the Kiota visual studio code extenstion or command line tool to gerneate the sdk fromt he api specs 
+but here we used github action to automate the gerneation process once the new openapi specs is gerenated it will trigger the Kiota build process.
+
+you can find the workflow here
+[Build Kiota](Typespec-poc/.github/workflows/build-Kiota.yml)
+
+
+## import the specs to Azure API managment and Implement a mocking response policy
+
+we import the specs to API managment and add the mokcking policy using this workflow [here](Typespec-poc/.github/workflows/release.yml)
 
 You can add a mocking response easily in a policy (see snippet below). I've added this policy in the automated deployment [here](deploy/release/policies/api_policy.xml), which will return a mocking response.
 
@@ -101,7 +124,7 @@ You can add a mocking response easily in a policy (see snippet below). I've adde
 * Git Clone the repository
 
 ```ps1
-git clone https://github.com/pascalvanderheiden/ais-apim-copilot.git
+git clone https://github.com/mmegahed-ms/Typespec-poc.git
 ```
 
 * Deploy it all by one script
@@ -129,12 +152,6 @@ If you deleted the deployment via the Azure Portal, and you want to run this dep
 ```ps1
 .\deploy\del-soft-delete-apim.ps1 -subscriptionId $subscriptionId -apimName $apimName
 ```
-
-* Testing
-
-I've included a tests.http file with relevant Test you can perform, to check if your deployment is successful. Or you can just test it via the Azure Portal.
-
-![ais-apim-copilot](docs/images/apim_result.png)
 
 ## Deploy with Github Actions
 
