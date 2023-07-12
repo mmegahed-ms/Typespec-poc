@@ -6,6 +6,7 @@ using TypeSpec.Http;
     title: "Widget Service",
     version: "1.1.0",
 })
+@doc("Customer Demo Service API.")
 namespace DemoService;
 
 model Widget {
