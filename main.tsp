@@ -25,30 +25,7 @@ model Gadget {
     color: "red" | "blue";
 }
 
-/*
-add a new model called customer that is a copy of widget but has differnt properties base on the below sample
-{
-    "customer": {
-        "name": "John Doe",
-        "address": "123 Main St",
-        "city": "Springfield",
-        "state": "IL",
-        "zip": "62701"
-    },
-    "items": [
-        {
-            "name": "Widget",
-            "quantity": 3,
-            "price": 10.00
-        },
-        {
-            "name": "Thing",
-            "quantity": 1,
-            "price": 5.00
-        }
-    ]
-}
-*/
+//add a new model called customer that is a copy of widget but has differnt properties base on the below sample
 
 
 model Customer {
@@ -70,14 +47,6 @@ model Item {
 }
 
 
-
-
-
-/*@error
-model Error {
-  code: int32;
-  message: string;
-}*/
 
 @route("/widgets")
 @tag("Widgets")
