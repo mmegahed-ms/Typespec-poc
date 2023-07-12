@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'tsp-output/@typespec/openapi3'
+      - 'tsp-output/**'
   #   inputs:
   #     deploymentNameBuild:
   #       description: 'Deployment Name Build'     
