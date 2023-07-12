@@ -13,6 +13,7 @@ paths:
       tags:
         - Customers
       operationId: Customers_list
+      description: Customer Demo Interface.
       parameters: []
       responses:
         '200':
