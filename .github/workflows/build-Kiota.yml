@@ -1,9 +1,11 @@
 name: Build Kiota
 
 on:
-  push:
-    paths:
-      - 'tsp-output/**'
+  #push:
+   #paths:
+      #- 'tsp-output/**'
+  #workflow_run:
+    #workflows: ["Build-Typespec CI2"]    
   workflow_dispatch:
 
 jobs:
